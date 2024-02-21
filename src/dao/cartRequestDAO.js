@@ -5,11 +5,11 @@ class CartRequestDAO {
     }
 
     async save(cartRequest) {
-        const { cartId, requestId } = cartRequest;
+        const { cart_id, request_id } = cartRequest;
         try {
             const results = await this.client.query(
                 `INSERT INTO cartRequest (cart_id, request_id) VALUES ($1, $2) RETURNING *`,
-                [cartId, requestId]
+                [cart_id, request_id]
             );
             return results.rows;
         } catch(err){
@@ -48,9 +48,9 @@ class CartRequestDAO {
         }
     }
 
-    async findByRequestIdCartId(requestId, cartId) {
+    async findByRequestIdCartId(cart_id, request_id) {
         try {
-            const results = await this.client.query(`SELECT * FROM cartRequest WHERE request_id = $1 AND cart_id = $2`, [requestId, cartId]);
+            const results = await this.client.query(`SELECT * FROM cartRequest WHERE request_id = $1 AND cart_id = $2`, [cart_id, request_id]);
             return results.rows;
         } catch(err){
             console.error(err);
@@ -62,7 +62,7 @@ class CartRequestDAO {
         try {
             const results = await this.client.query(
                 "UPDATE cartRequest SET cart_id = $1, request_id = $2, WHERE id = $3 RETURNING *",
-                [cartRequest.cartId, cartRequest.requestId, cartRequest.id]
+                [cartRequest.cart_id, cartRequest.request_id, cartRequest.id]
             );
             return results.rows;
         } catch(err){
@@ -71,9 +71,9 @@ class CartRequestDAO {
         }
     }
    
-    async deleteByRequestIdCartId(requestId, cartId) {
+    async deleteByRequestIdCartId(cart_id, request_id) {
         try {
-            const results = await this.client.query(`DELETE FROM cartRequest WHERE request_id = $1 AND cart_id = $2`, [requestId, cartId]);
+            const results = await this.client.query(`DELETE FROM cartRequest WHERE request_id = $1 AND cart_id = $2`, [cart_id, request_id]);
             return results.rows; 
         } catch(err){
             console.error(err);
