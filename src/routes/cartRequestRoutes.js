@@ -9,7 +9,7 @@ router.get("/cartId/:id", cartRequestController.getCartRequestByCartId);
 
 router.get("/requestId/:id", cartRequestController.getCartRequestByRequestId);
 
-router.get("/cartId-requestId/:id", cartRequestController.getCartRequestByRequestId);
+router.get("/:cartId/:requestId", cartRequestController.getCartRequestByCartIdRequestId);
 
 router.post("/", cartRequestController.createCartRequest);
 
