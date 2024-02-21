@@ -8,7 +8,7 @@ class RequestDAO {
         const { quantity, product_id } = request;
         try {
             const results = await this.client.query(
-                `INSERT INTO request (quantity, productId) VALUES ($1, $2) RETURNING *`,
+                `INSERT INTO request (quantity, product_id) VALUES ($1, $2) RETURNING *`,
                 [quantity, product_id]
             );
             return results.rows;
@@ -41,7 +41,7 @@ class RequestDAO {
     async updateOne(request) {
         try {
             const results = await this.client.query(
-                "UPDATE request SET quantity = $1, productId = $2, WHERE id = $3 RETURNING *",
+                "UPDATE request SET quantity = $1, product_id = $2 WHERE id = $3 RETURNING *",
                 [request.quantity, request.product_id, request.id]
             );
             return results.rows;

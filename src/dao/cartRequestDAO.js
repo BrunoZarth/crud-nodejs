@@ -8,7 +8,7 @@ class CartRequestDAO {
         const { cart_id, request_id } = cartRequest;
         try {
             const results = await this.client.query(
-                `INSERT INTO cartRequest (cart_id, request_id) VALUES ($1, $2) RETURNING *`,
+                `INSERT INTO cart_request (cart_id, request_id) VALUES ($1, $2) RETURNING *`,
                 [cart_id, request_id]
             );
             return results.rows;
@@ -20,7 +20,7 @@ class CartRequestDAO {
    
     async findAll() {
         try {
-            const results = await this.client.query("SELECT * FROM cartRequest");
+            const results = await this.client.query("SELECT * FROM cart_request");
             return results.rows;
         } catch(err){
             console.error(err);
@@ -30,7 +30,7 @@ class CartRequestDAO {
    
     async findByCartId(cartId) {
         try {
-            const results = await this.client.query(`SELECT * FROM cartRequest WHERE cart_id = $1`, [cartId]);
+            const results = await this.client.query(`SELECT * FROM cart_request WHERE cart_id = $1`, [cartId]);
             return results.rows;
         } catch(err){
             console.error(err);
@@ -40,7 +40,7 @@ class CartRequestDAO {
 
     async findByRequestId(cartId) {
         try {
-            const results = await this.client.query(`SELECT * FROM cartRequest WHERE request_id = $1`, [cartId]);
+            const results = await this.client.query(`SELECT * FROM cart_request WHERE request_id = $1`, [cartId]);
             return results.rows;
         } catch(err){
             console.error(err);
@@ -50,7 +50,7 @@ class CartRequestDAO {
 
     async findByRequestIdCartId(cart_id, request_id) {
         try {
-            const results = await this.client.query(`SELECT * FROM cartRequest WHERE request_id = $1 AND cart_id = $2`, [cart_id, request_id]);
+            const results = await this.client.query(`SELECT * FROM cart_request WHERE request_id = $1 AND cart_id = $2`, [cart_id, request_id]);
             return results.rows;
         } catch(err){
             console.error(err);
@@ -61,7 +61,7 @@ class CartRequestDAO {
     async updateOne(cartRequest) {
         try {
             const results = await this.client.query(
-                "UPDATE cartRequest SET cart_id = $1, request_id = $2, WHERE id = $3 RETURNING *",
+                "UPDATE cart_request SET cart_id = $1, request_id = $2 WHERE id = $3 RETURNING *",
                 [cartRequest.cart_id, cartRequest.request_id, cartRequest.id]
             );
             return results.rows;
@@ -73,7 +73,7 @@ class CartRequestDAO {
    
     async deleteByRequestIdCartId(cart_id, request_id) {
         try {
-            const results = await this.client.query(`DELETE FROM cartRequest WHERE request_id = $1 AND cart_id = $2`, [cart_id, request_id]);
+            const results = await this.client.query(`DELETE FROM cart_request WHERE request_id = $1 AND cart_id = $2`, [cart_id, request_id]);
             return results.rows; 
         } catch(err){
             console.error(err);

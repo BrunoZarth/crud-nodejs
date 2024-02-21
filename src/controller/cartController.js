@@ -38,7 +38,7 @@ const createCart = async (req, res) => {
 
     const newcart = {
         "users_id": usersId,
-        "created_at": createdAt,
+        "createdAt": createdAt,
     }
 
     try {
@@ -60,7 +60,7 @@ const updateCart = async (req, res) => {
     const cart = {
         "id": req.params.id,
         "users_id": req.body.users_id,
-        "created_at": req.body.created_at
+        "createdAt": req.body.createdAt
     };
     try {
         const results = await cartDAO.updateOne(cart);

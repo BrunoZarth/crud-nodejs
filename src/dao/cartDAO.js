@@ -5,11 +5,11 @@ class CartDAO {
     }
 
     async save(cart) {
-        const { user, createdAt } = cart;
+        const { users_id, createdAt } = cart;
         try {
             const results = await this.client.query(
-                `INSERT INTO cart (user, createdAt) VALUES ($1, $2) RETURNING *`,
-                [user, createdAt]
+                `INSERT INTO cart (users_id, createdAt) VALUES ($1, $2) RETURNING *`,
+                [users_id, createdAt]
             );
             return results.rows;
         } catch(err){
@@ -41,8 +41,8 @@ class CartDAO {
     async updateOne(cart) {
         try {
             const results = await this.client.query(
-                "UPDATE cart SET user = $1, createdAt = $2, WHERE id = $3 RETURNING *",
-                [cart.user, cart.createdAt, cart.id]
+                "UPDATE cart SET user_id = $1, createdAt = $2, WHERE id = $3 RETURNING *",
+                [cart.user_id, cart.createdAt, cart.id]
             );
             return results.rows;
         } catch(err){

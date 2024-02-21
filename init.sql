@@ -25,7 +25,7 @@ CREATE TABLE request (
 CREATE TABLE cart (
     id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
     users_id UUID NOT NULL,
-    created_at TIMESTAMP,
+    createdAt TIMESTAMP,
     FOREIGN KEY (users_id) REFERENCES users (id)
 );
 

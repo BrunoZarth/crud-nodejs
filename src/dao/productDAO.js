@@ -41,7 +41,7 @@ class ProductDAO {
     async updateOne(product) {
         try {
             const results = await this.client.query(
-                "UPDATE product SET name = $1, price = $2, WHERE id = $3 RETURNING *",
+                "UPDATE product SET name = $1, price = $2 WHERE id = $3 RETURNING *",
                 [product.name, product.price, product.id]
             );
             return results.rows;

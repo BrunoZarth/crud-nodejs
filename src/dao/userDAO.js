@@ -51,7 +51,7 @@ class UserDAO {
     async updateOne(user) {
         try {
             const results = await this.client.query(
-                "UPDATE users SET name = $1, email = $2, hash = $3, WHERE id = $4 RETURNING *",
+                "UPDATE users SET name = $1, email = $2, hash = $3 WHERE id = $4 RETURNING *",
                 [user.name, user.email, user.hash, user.id]
             );
             return results.rows;

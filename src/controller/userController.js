@@ -67,7 +67,8 @@ const updateUser = async (req, res) => {
     const user = {
         "id": req.params.id,
         "name": req.body.name,
-        "email": req.body.email
+        "email": req.body.email,
+        "hash": req.body.hash
     };
     try {
         const results = await UserDAO.updateOne(user);
