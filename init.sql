@@ -1,4 +1,5 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 CREATE TABLE users (
     id UUID DEFAULT uuid_generate_v4 (),
     name VARCHAR(255) NOT NULL,
@@ -17,15 +18,15 @@ CREATE TABLE product (
 CREATE TABLE request (
     id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
     quantity INTEGER NOT NULL,
-    product_id INTEGER,
+    product_id UUID DEFAULT uuid_generate_v4 () NOT NULL,
     FOREIGN KEY (product_id) REFERENCES product (id)
 );
 
 CREATE TABLE cart (
     id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
-    user_id UUID DEFAULT uuid_generate_v4 () NOT NULL,
+    users_id UUID DEFAULT uuid_generate_v4 () NOT NULL,
     created_at TIMESTAMP NOT NULL
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    FOREIGN KEY (users_id) REFERENCES users (id)
 );
 
 CREATE TABLE cart_request (
