@@ -23,13 +23,14 @@ CREATE TABLE request (
 
 CREATE TABLE cart (
     id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
-    user_id INTEGER NOT NULL,
+    user_id UUID DEFAULT uuid_generate_v4 () NOT NULL,
     created_at TIMESTAMP NOT NULL
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE cart_request (
     cart_id INTEGER NOT NULL,
-    request_id INTEGER NOT NULL,
+    request_id UUID DEFAULT uuid_generate_v4 () NOT NULL,
     FOREIGN KEY (cart_id) REFERENCES cart (id),
     FOREIGN KEY (request_id) REFERENCES request (id)
 );
