@@ -30,7 +30,7 @@ CREATE TABLE cart (
 );
 
 CREATE TABLE cart_request (
-    cart_id INTEGER NOT NULL,
+    cart_id UUID DEFAULT uuid_generate_v4 () NOT NULL,
     request_id UUID DEFAULT uuid_generate_v4 () NOT NULL,
     FOREIGN KEY (cart_id) REFERENCES cart (id),
     FOREIGN KEY (request_id) REFERENCES request (id)
