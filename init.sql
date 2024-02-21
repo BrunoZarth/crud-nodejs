@@ -7,3 +7,29 @@ CREATE TABLE users (
     salt VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE product (
+    id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE request (
+    id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
+    quantity INTEGER NOT NULL,
+    product_id INTEGER,
+    FOREIGN KEY (product_id) REFERENCES product (id)
+);
+
+CREATE TABLE cart (
+    id UUID DEFAULT uuid_generate_v4 () PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);
+
+CREATE TABLE cart_request (
+    cart_id INTEGER NOT NULL,
+    request_id INTEGER NOT NULL,
+    FOREIGN KEY (cart_id) REFERENCES cart (id),
+    FOREIGN KEY (request_id) REFERENCES request (id)
+);
