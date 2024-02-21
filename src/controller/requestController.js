@@ -60,7 +60,7 @@ const updateRequest = async (req, res) => {
     const request = {
         "id": req.params.id,
         "quantity": req.body.quantity,
-        "product_id": req.body.productId
+        "product_id": req.body.product_id
     };
     try {
         const results = await requestDAO.updateOne(request);
