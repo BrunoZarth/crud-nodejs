@@ -71,9 +71,9 @@ class CartRequestDAO {
         }
     }
    
-    async deleteByRequestIdCartId(cart_id, request_id) {
+    async deleteByRequestIdCartId(request_id, cart_id) {
         try {
-            const results = await this.client.query(`DELETE FROM cart_request WHERE request_id = $1 AND cart_id = $2`, [cart_id, request_id]);
+            const results = await this.client.query(`DELETE FROM cart_request WHERE request_id = $1 AND cart_id = $2`, [request_id, cart_id]);
             return results.rows; 
         } catch(err){
             console.error(err);

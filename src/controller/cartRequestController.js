@@ -107,10 +107,10 @@ const updateCartRequest = async (req, res) => {
 }
 
 const deleteByRequestIdCartId = async (req, res) => {
-    const cartId= req.params.cartId;
-    const requestId= req.params.requestId;
+    const cartId= req.params.cart_id;
+    const requestId= req.params.request_id;
     try {
-        const results = await cartRequestDAO.deleteByRequestIdCartId(cartId, requestId);
+        const results = await cartRequestDAO.deleteByRequestIdCartId(requestId, cartId);
         if (results.length === 0) {
             res.status(404).json({ message: `cartRequest not found` });
         } else {
