@@ -41,7 +41,7 @@ class CartDAO {
     async updateOne(cart) {
         try {
             const results = await this.client.query(
-                "UPDATE cart SET user_id = $1, createdAt = $2, WHERE id = $3 RETURNING *",
+                "UPDATE cart SET user_id = $1, createdAt = $2 WHERE id = $3 RETURNING *",
                 [cart.user_id, cart.createdAt, cart.id]
             );
             return results.rows;
