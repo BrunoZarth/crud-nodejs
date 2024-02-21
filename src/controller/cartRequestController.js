@@ -130,4 +130,5 @@ module.exports = {
     createCartRequest,
     updateCartRequest,
     deleteByRequestIdCartId,
+    getCartRequestByCartIdRequestId
 };
