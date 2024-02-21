@@ -47,6 +47,22 @@ const getCartRequestByRequestId = async (req, res) => {
     }
 }
 
+const getCartRequestByCartIdRequestId = async (req, res) => {
+    const requestId = req.params.request_id;
+    const cartId = req.params.cart_id;
+    try {
+        const results = await cartRequestDAO.findByRequestIdCartId(requestId, cartId);
+        if (results.length === 0) {
+            res.status(404).json({ message: 'cartRequest not found' });
+        } else {
+            res.status(200).json(results);
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'An error occurred while getting the cartRequest by ID' });
+    }
+}
+
 const createCartRequest = async (req, res) => {
     //const newcartRequest = cartRequestService.cartRequestGenerate(req.body);
 
